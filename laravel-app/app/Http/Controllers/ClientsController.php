@@ -9,26 +9,59 @@ class ClientsController extends Controller
 {
     public function index()
     {
-        return Clients::all();
+        $clients = Clients::all();
+        return response()->json($clients);
     }
 
     public function store(Request $request)
     {
-        return Clients::all();
+        $request->validate([
+            'name' => 'required|string',
+
+        ]);
+
+        $client = Clients::create($request->all());
+
+        return response()->json($client, 201);
     }
 
-    public function show(Clients $clients)
+    public function show($id)
     {
-        return Clients::all();
+        $client = Clients::find($id);
+        if (!$client) {
+            return response()->json(['error' => 'Client not found'], 404);
+        }
+
+        return response()->json($client);
     }
 
-    public function update(Request $request, Clients $clients)
+    public function update(Request $request, $id)
     {
-        return Clients::all();
+        $client = Clients::find($id);
+
+        if (!$client) {
+            return response()->json(['error' => 'Client not found'], 404);
+        }
+
+        $request->validate([
+            'name' => 'required|string'
+        ]);
+
+        $client->update($request->all());
+
+        return response()->json($client);
     }
 
-    public function destroy(Clients $clients)
+    public function destroy($id)
     {
-        return Clients::all();
+        $client = Clients::find($id);
+
+        if (!$client) {
+            return response()->json(['error' => 'Client not found'], 404);
+        }
+
+        $client->delete();
+
+        return response()->json(['message' => 'Client deleted']);
     }
 }
