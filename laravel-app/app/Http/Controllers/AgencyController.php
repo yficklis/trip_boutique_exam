@@ -14,21 +14,26 @@ class AgencyController extends Controller
 
     public function store(Request $request)
     {
-        return Agency::all();
+        $agency = Agency::create($request->all());
+        return response()->json($agency, 201);
     }
 
-    public function show(Agency $agency)
+    public function show($id)
     {
-        return Agency::all();
+        return Agency::find($id);
     }
 
-    public function update(Request $request, Agency $agency)
+    public function update(Request $request, $id)
     {
-        return Agency::all();
+        $agency = Agency::findOrFail($id);
+        $agency->update($request->all());
+        return response()->json($agency, 200);
     }
 
-    public function destroy(Agency $agency)
+    public function destroy($id)
     {
-        return Agency::all();
+        $agency = Agency::findOrFail($id);
+        $agency->delete();
+        return response()->json(null, 204);
     }
 }
