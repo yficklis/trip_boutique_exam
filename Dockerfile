@@ -3,6 +3,7 @@ WORKDIR /var/www/html
 
 # Mod Rewrite
 RUN a2enmod rewrite
+RUN service apache2 restart
 
 # Linux Library
 RUN apt-get update -y && apt-get install -y \

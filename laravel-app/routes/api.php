@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\HotelController;
+use App\Models\AgencyHotel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('/hotels', HotelController::class);
+Route::apiResource('/agencies', AgencyHotel::class);
+Route::apiResource('/clients', ClientsController::class);
