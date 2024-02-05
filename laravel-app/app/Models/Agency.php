@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Agency extends Model
 {
@@ -14,8 +14,13 @@ class Agency extends Model
 
     protected $fillable = ['name'];
 
-    public function agency(): BelongsTo
+    public function hotels(): BelongsToMany
     {
-        return $this->belongsTo(AgencyHotel::class, 'agency_id', 'id');
+        return $this->belongsToMany(Hotel::class);
+    }
+
+    public function clients(): BelongsToMany
+    {
+        return $this->belongsToMany(Client::class);
     }
 }

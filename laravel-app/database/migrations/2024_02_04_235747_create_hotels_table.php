@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('hotels', function (Blueprint $table) {
             $table->id();
+            $table->string('tag_id');
             $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->text('description_license')->nullable();

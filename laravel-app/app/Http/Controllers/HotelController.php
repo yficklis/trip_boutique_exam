@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agency;
+use App\Models\Client;
 use App\Models\Hotel;
 use Illuminate\Http\Request;
 
@@ -10,8 +12,17 @@ class HotelController extends Controller
 
     public function index()
     {
-        $user = 1;
-        return Hotel::find($user)->agencies;
+        $hotels = Client::getListHotels(5);
+
+        foreach ($hotels as $hotel) {
+            if (Hotel::verifyAllHotelPropertiesAreOk($hotel)) {
+                continue;
+            }
+
+            Hotel::completeMissingProperties($hotel);
+        }
+
+        die(json_encode($hotels));
     }
 
     public function store(Request $request)

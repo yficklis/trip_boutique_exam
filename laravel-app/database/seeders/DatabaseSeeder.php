@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             ['id' => 3, 'name' => 'Sandman', 'created_at' => now(), 'updated_at' => now()]
         ]);
 
-        DB::table('agency_clients')->insert([
+        DB::table('agency_client')->insert([
             ['agency_id' => 1, 'client_id' => 1, 'created_at' => now(), 'updated_at' => now()],
             ['agency_id' => 2, 'client_id' => 2, 'created_at' => now(), 'updated_at' => now()],
             ['agency_id' => 3, 'client_id' => 3, 'created_at' => now(), 'updated_at' => now()]
@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
         DB::table('hotels')->insert([
             [
                 'id' => 1,
+                'tag_id' => '00001',
                 'name' => 'Hotel Seaside',
                 'description' => 'A luxurious beachfront getaway offering serene views and top-notch amenities',
                 'description_license' => 'by The Trip Boutique',
@@ -46,6 +47,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'id' => 2,
+                'tag_id' => '00001',
                 'name' => null,
                 'description' => 'Enjoy exclusive access to our private beach and rooftop dining at Hotel Seaside.',
                 'description_license' => 'Unset',
@@ -57,6 +59,7 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'id' => 3,
+                'tag_id' => '00001',
                 'name' => 'Hotel Seaside Retreat',
                 'description' => null,
                 'description_license' => null,
@@ -68,7 +71,7 @@ class DatabaseSeeder extends Seeder
             ]
         ]);
 
-        DB::table('agency_hotels')->insert([
+        DB::table('agency_hotel')->insert([
             ['agency_id' => 1, 'hotel_id' => 1, 'created_at' => now(), 'updated_at' => now()],
             ['agency_id' => 2, 'hotel_id' => 2, 'created_at' => now(), 'updated_at' => now()],
             ['agency_id' => 3, 'hotel_id' => 3, 'created_at' => now(), 'updated_at' => now()]
