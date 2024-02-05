@@ -22,5 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('/hotels', HotelController::class);
+Route::get('/hotels/clientes-associated/{clientId}', [HotelController::class, 'search']);
 Route::apiResource('/agencies', AgencyController::class);
 Route::apiResource('/clients', ClientsController::class);
